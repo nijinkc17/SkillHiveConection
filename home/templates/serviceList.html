@@ -1,0 +1,34 @@
+{% load static %}
+
+{% include 'test_layout.html' %}
+
+<div class="small-container">
+    <h2 class="title">Our services</h2>
+    <div class="row">
+      {% for i in data %}
+        <div class="col-4">
+          
+
+            <a href="#"><img src="{{i.image.url }}"></a>
+            <h4>{{i.name}} </h4>
+            <h4>Rs:{{i.service_charge}} </h4>
+            <!-- <h5>{{i.our_service.category}}</h5> -->
+            <p>{{i.description}}</p>
+            <a href="" class="btn">Book now</a>
+            
+          
+        </div>
+        {%endfor%}
+        
+    </div>
+    
+    
+</div>
+
+
+
+
+
+
+
+{% include 'footer.html'%}
