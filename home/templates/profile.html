@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkiLL Hive conection</title>
+    <title>RedStore | Ecommerce Website Design</title>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -44,32 +44,42 @@
 
         </div>
     </div>
+
+
+    <div class="row mt-5 container">
+        <!-- <div class="col p-5">
+            <img src="{{data.image.url}}" style="height: 400px; width: 500px;"  alt="image not found">
+        </div> -->
+        <div class="col mt-5">
+            <ul class="list-group">
+                <li class="list-group-item"><h5 style="display: inline-block;">Name:</h5> <b>{{request.user.first_name}} {{request.user.last_name}}</b></li>
+                <li class="list-group-item"><h5 style="display: inline-block;">Email:</h5> <b>{{request.user.email}}</b></li>
+
+                <li class="list-group-item"><h5 style="display: inline-block;">Joined date</h5> <b>{{request.user.date_joined}}</b></li>
+
+                
+                    
+                      
+                   
+                    
+    
+                
+    
+            </ul>
+        </div>
+    </div>
     
     
-    
-    {% block content %}
-    <!-- Feadtued Categories -->
 
 
-    {% endblock content %}
+
+
 
 
     
+    {% include 'footer.html'%}
 
 
-    {% block testimonial %}
-    <!-- Testimonial -->
-    <!-- {% include 'testimonial.html' %}   -->
-    {% endblock testimonial %}
-
-    <!-- Brands -->
-
-    
-
-    <!-- Footer -->
-    
-
-    <!-- javascript -->
 
     <script>
         var MenuItems = document.getElementById("MenuItems");

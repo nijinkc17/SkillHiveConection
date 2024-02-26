@@ -50,17 +50,28 @@ class OurServices(models.Model):
     def __str__(self):
         return self.name
 
+class BookingPage(models.Model):
+    ourservices=models.ForeignKey(OurServices,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    date=models.DateField(auto_now_add=True)
+    status=models.CharField(default='pending',max_length=100)
+
+    def __str__(self):
+        return str(self.ourservices.name)
+
+
     
 
 
 
 class Booking(models.Model):
-    user =models.ForeignKey(User, on_delete=models.CASCADE)
-    service =models.ForeignKey(Service, on_delete=models.CASCADE)
-    professional =models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings_as_professional')
+    # user =models.ForeignKey(User, on_delete=models.CASCADE)
+    booking =models.OneToOneField(BookingPage, on_delete=models.CASCADE,null=True)
+    # professional =models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings_as_professional')
     date =models.DateField(auto_now_add=True) 
-    time =models.TimeField(auto_now_add=True) 
-    # date=models.DateTimeField()
+    time =models.TimeField(auto_now_add=True)
+    address=models.CharField(max_length=200,null=True)
+    phone=models.IntegerField(null=True)
 
     status_choices = [
         ('pending', 'Pending'),
@@ -69,10 +80,13 @@ class Booking(models.Model):
         ('canceled', 'Canceled'),
     ]
     status = models.CharField(max_length=20, choices=status_choices, default='pending')
+    def __str__(self):
+        return str(self.booking.user) if self.booking else "No BookingPage"
 
-class Review(models.Model):
-    booking=models.OneToOneField(Booking, on_delete=models.CASCADE)
-    rating=models.PositiveIntegerField()
-    comment=models.TextField()
+
+# class Review(models.Model):
+#     booking=models.OneToOneField(Booking, on_delete=models.CASCADE)
+#     rating=models.PositiveIntegerField()
+#     comment=models.TextField()
 
 

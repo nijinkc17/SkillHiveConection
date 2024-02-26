@@ -1,0 +1,130 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedStore | Ecommerce Website Design</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+/>
+    <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+
+
+    <link rel="stylesheet" href="{% static 'css/styleHome.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+</head>
+
+
+<body>
+    <div class="header">
+        <div class="container">
+            {% include 'navbaar.html' %}
+
+           
+
+        </div>
+    </div>
+
+
+    <div class="row mt-5 container">
+        <div class="col p-5">
+            <img src="{{data.image.url}}" style="height: 400px; width: 500px;"  alt="image not found">
+        </div>
+        <div class="col mt-5">
+            <ul class="list-group">
+                <li class="list-group-item"><h5 style="display: inline-block;">Name:</h5> <b>{{data.name}}</b></li>
+                <li class="list-group-item"><h5 style="display: inline-block;">Catagory:</h5> <b>{{data.our_service.category}}</b></li>
+
+                <li class="list-group-item"><h5 style="display: inline-block;">Description:</h5> <b>{{data.description}}</b></li>
+
+                <li class="list-group-item"><h5 style="display: inline-block;">Service Charge:</h5> <b>Rs:{{data.service_charge}}</b></li>
+
+                <li class="list-group-item">
+                    <!-- Check if 'data.id' is not empty -->
+                    {% if data.id %}
+                        <!-- <a href="{% url 'checkout' data.id %}" class="btn btn-info">Book now</a> -->
+                        <a href="{% url 'bookHistory' %}" class="btn btn-info">Booking history</a>
+                        <a href="{% url 'bookingPage' data.id %}" class="btn btn-info">booking page</a>
+                    {% else %}
+                    <!-- Handle the case where 'i.id' is empty -->
+                    <p>Error: 'id' is empty</p>
+                    {% endif %}
+                </li>
+                <li class="list-group-item">
+                    <p>
+                        
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReview" aria-expanded="false" aria-controls="collapseExample">
+                          Add your review
+                        </button>
+                      </p>
+                      <div class="collapse" id="collapseReview">
+                        <div class="card card-body">
+                          <form action="#" method="post" class="text-center bg-light rounded">
+                            {%csrf_token%}
+                            <table class="table table-borderless">
+                                {{form.as_table}}
+                            </table>
+                            <button class="btn btn-success">submit</button>
+        
+                        
+        
+                        </form>
+                        </div>
+                      </div>
+                   
+                    
+    
+                </li>
+    
+            </ul>
+        </div>
+    </div>
+    
+    
+
+
+
+
+
+
+    
+    {% include 'footer.html'%}
+
+
+
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px"
+            }
+            else {
+                MenuItems.style.maxHeight = "0px"
+            }
+        }
+    </script>
+
+</body>
+
+</html>

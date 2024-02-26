@@ -11,10 +11,10 @@
 
             <a href="#"><img src="{{i.image.url }}"></a>
             <h4>{{i.name}} </h4>
-            <h4>Rs:{{i.service_charge}} </h4>
+            <!-- <h4>Rs:{{i.service_charge}} </h4> -->
             <!-- <h5>{{i.our_service.category}}</h5> -->
             <p>{{i.description}}</p>
-            <a href="" class="btn">Book now</a>
+            <a href="{% url 'serviceDetail' i.id %}" class="btn">To visit</a>
             
           
         </div>
